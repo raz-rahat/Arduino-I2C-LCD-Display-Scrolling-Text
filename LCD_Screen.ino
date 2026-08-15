@@ -8,7 +8,7 @@ void setup() {
   lcd.backlight();     
 
   lcd.setCursor(0, 0);
-  lcd.print("Name: Rahim");
+  lcd.print("Name: Rahat");
   delay(3000);
   lcd.clear();
 
