@@ -1,59 +1,59 @@
-# 📟 I2C LCD Display — Text & Scrolling Message (Arduino)
+# 📟 I2C LCD ডিসপ্লে — টেক্সট ও স্ক্রলিং মেসেজ (Arduino)
 
-A beginner-friendly project that displays static text (name, class, roll) followed by a smooth **scrolling message** on a 16x2 I2C LCD screen.
+একটা বিগিনার-ফ্রেন্ডলি প্রজেক্ট, যেখানে একটা ১৬x২ I2C LCD স্ক্রিনে প্রথমে স্ট্যাটিক টেক্সট (নাম, ক্লাস, রোল) দেখানো হবে, তারপর একটা মসৃণ **স্ক্রলিং মেসেজ** চলবে।
 
-## ✨ What It Does
-1. Shows **"Name: Rahat"** for 3 seconds
-2. Clears and shows **"Class: N/A"** / **"Roll: 100"** for 3 seconds
-3. Clears and scrolls **"Bangabashi School"** smoothly across the screen, on repeat
+## ✨ এই প্রজেক্টে কী হবে
+1. প্রথমে ৩ সেকেন্ডের জন্য দেখাবে **"Name: Rahat"**
+2. এরপর স্ক্রিন ক্লিয়ার করে ৩ সেকেন্ডের জন্য দেখাবে **"Class: N/A"** / **"Roll: 100"**
+3. এরপর স্ক্রিন ক্লিয়ার করে **"Bangabashi School"** লেখাটা স্মুথভাবে স্ক্রল হয়ে চলতে থাকবে, বারবার
 
-## 🧰 Components Required
-| Component | Quantity | Notes |
+## 🧰 প্রয়োজনীয় উপকরণ
+| উপকরণ | পরিমাণ | নোট |
 |---|---|---|
-| Arduino Uno / ESP32 Board | 1 | Either works |
-| 16x2 LCD with I2C Module (PCF8574) | 1 | I2C address usually `0x27` or `0x3F` |
-| Jumper Wires (M-F / M-M) | 4 | |
-| Breadboard | 1 | Optional, for cleaner wiring |
-| USB Cable | 1 | For power & programming |
+| Arduino Uno / ESP32 বোর্ড | ১টি | যেকোনো একটা হলেই চলবে |
+| ১৬x২ LCD (I2C মডিউল সহ, PCF8574) | ১টি | I2C অ্যাড্রেস সাধারণত `0x27` অথবা `0x3F` হয় |
+| জাম্পার ওয়্যার (M-F / M-M) | ৪টি | |
+| ব্রেডবোর্ড | ১টি | (ঐচ্ছিক, ওয়্যারিং পরিষ্কার রাখার জন্য) |
+| USB কেবল | ১টি | পাওয়ার ও প্রোগ্রামিং এর জন্য |
 
-## 🔌 Connection / Pinout
+## 🔌 সার্কিট কানেকশন
 
-| LCD (I2C Module) Pin | Arduino Uno | ESP32 |
+| LCD (I2C মডিউল) পিন | Arduino Uno | ESP32 |
 |---|---|---|
 | GND | GND | GND |
 | VCC | 5V | 5V / 3.3V* |
 | SDA | A4 | GPIO 21 |
 | SCL | A5 | GPIO 22 |
 
-> *Check your specific I2C LCD backpack's voltage rating before connecting to an ESP32.
+> *ESP32-তে কানেক্ট করার আগে তোমার I2C LCD ব্যাকপ্যাকের ভোল্টেজ রেটিং চেক করে নিও।
 
-## 📚 Required Libraries
-Install via Arduino IDE Library Manager:
-- `LiquidCrystal_I2C` (by Frank de Brabander or Marco Schwartz — search "LiquidCrystal I2C")
-- `Wire` (built-in)
+## 📚 প্রয়োজনীয় লাইব্রেরি
+Arduino IDE Library Manager থেকে ইনস্টল করো:
+- `LiquidCrystal_I2C` (Frank de Brabander বা Marco Schwartz এর — "LiquidCrystal I2C" লিখে সার্চ করো)
+- `Wire` (বিল্ট-ইন, আলাদা করে ইনস্টল লাগবে না)
 
-## ⚙️ Setup Instructions
-1. Open `Day_2_LCD_Screen_code.ino` in Arduino IDE.
-2. Wire the I2C LCD module as shown in the pinout table above.
-3. If your screen doesn't light up or shows garbled text, confirm the I2C address (`0x27` in the code) — use an I2C scanner sketch if unsure, and update this line if needed:
+## ⚙️ সেটআপ করার নিয়ম
+1. Arduino IDE-তে `LCD_Screen.ino` ফাইলটা খুলো।
+2. উপরের টেবিল অনুযায়ী I2C LCD মডিউল কানেক্ট করো।
+3. যদি স্ক্রিনে কিছু না দেখা যায় বা এলোমেলো লেখা আসে, তাহলে I2C অ্যাড্রেস (কোডে `0x27` দেওয়া আছে) ঠিক আছে কিনা চেক করো — দরকার হলে একটা I2C স্ক্যানার স্কেচ চালিয়ে সঠিক অ্যাড্রেস বের করো এবং এই লাইনটা আপডেট করো:
    ```cpp
    LiquidCrystal_I2C lcd(0x27, 16, 2);
    ```
-4. Select your board and correct COM port, then click **Upload**.
-5. Watch your name/class/roll appear, followed by a scrolling school name banner.
+4. বোর্ড ও সঠিক COM পোর্ট সিলেক্ট করে **Upload** বাটনে ক্লিক করো।
+5. দেখবে প্রথমে তোমার নাম/ক্লাস/রোল দেখাচ্ছে, এরপর স্কুলের নাম স্ক্রল হয়ে চলছে।
 
-## 🧠 What You'll Learn
-- I2C communication basics (SDA/SCL)
-- Using the `LiquidCrystal_I2C` library (`setCursor`, `print`, `clear`, `scrollDisplayLeft`)
-- Creating simple text animations on character LCDs
+## 🧠 এখান থেকে যা শিখবে
+- I2C কমিউনিকেশনের বেসিক ধারণা (SDA/SCL)
+- `LiquidCrystal_I2C` লাইব্রেরি ব্যবহার করা (`setCursor`, `print`, `clear`, `scrollDisplayLeft`)
+- ক্যারেক্টার LCD-তে সহজ টেক্সট অ্যানিমেশন তৈরি করা
 
-## 📺 Credit & Links
-Project by **RAZ**
+## 📺 ক্রেডিট ও লিংক
+প্রজেক্ট বানিয়েছেন **RAZ**
 
-- 🎥 YouTube: [Tech Raz Friday](https://www.youtube.com/@razfriday)
-- 📘 Facebook: [facebook.com/mdraz1995](https://www.facebook.com/mdraz1995)
+- 🎥 ইউটিউব: [Tech Raz Friday](https://www.youtube.com/@razfriday)
+- 📘 ফেসবুক: [facebook.com/mdraz1995](https://www.facebook.com/mdraz1995)
 
-If this helped you learn Arduino, consider subscribing for more beginner-friendly embedded projects!
+এই প্রজেক্ট যদি তোমার আরডুইনো শেখায় সাহায্য করে থাকে, তাহলে আরো বিগিনার-ফ্রেন্ডলি এম্বেডেড প্রজেক্টের জন্য চ্যানেলটা সাবস্ক্রাইব করতে পারো!
 
-## 📄 License
-Free to use and modify for personal and educational projects. Credit to **Tech Raz Friday** is appreciated when sharing or republishing.
+## 📄 লাইসেন্স
+ব্যক্তিগত ও শিক্ষামূলক কাজে বিনামূল্যে ব্যবহার ও পরিবর্তন করা যাবে। শেয়ার বা রিপাবলিশ করার সময় **Tech Raz Friday** কে ক্রেডিট দিলে ভালো হয়।
